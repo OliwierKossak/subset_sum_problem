@@ -3,22 +3,18 @@ import random
 import time
 
 class _SubsetCreator:
-    """A hill climbing algorithm deterministic version."""
+    """A class contains functions which that are using to modifying solutions."""
 
     def __init__(self, target_sum, iterations, set_numbers):
         """
 
         :param target_sum: Searched sum of numbers.
         :type target_sum: int
-        :param set_numbers: Initial set, from which we create subsets, which we search in order to find a solution.
+        :param set_numbers: Initial set, from which are creating first subsets,
+                            which we search in order to find a solution.
         :type set_numbers: set
         :param iterations: Number of algorithm executions.
         :type iterations: int
-        :param end_in_optimum: The algorithm terminates working when is at the optimum of the function.
-        :type end_in_optimum: bool
-        :param display_steps:Allows to display the steps that the algorithm performs in order to find
-               solutions. Not recommended due to the huge amount of displayed information.
-        :type display_steps: bool
         """
 
         self.target_sum = target_sum
@@ -63,9 +59,9 @@ class _SubsetCreator:
         """
         The function that return sum of numbers from subset.
 
-        :param subset: Subset that elements will be summed.
+        :param subset: Subset whose elements will be summed.
         :type subset: list
-        :return: Sum of numbers in subset.
+        :return: Sum of numbers of subset.
         :rtype: int
         """
 
@@ -88,12 +84,12 @@ class _SubsetCreator:
 
     def create_neighbours_for_subset(self, subset):
         """
-        The function which create neighbours for subset
+        The function which create neighboring solutions for subset.
 
-        :param subset: subset from which we create neighbors
+        :param subset: Subset from which are creating neighboring solutions
         :type subset: list
-        :return: nested list with neighbours and current subset
-        :rtype: nested list
+        :return: Nested list with neighbouring solutions and current subset
+        :rtype: list
         """
 
         neighbours = []
@@ -131,7 +127,7 @@ class _SubsetCreator:
 
     def convert_subset_into_decimal(self, subset):
         """
-        The function that convert subset binary numbers into decimal list.
+        The function that convert binary numbers in subset into decimal numbers.
 
         :param subset: Subset that will be converted.
         :type subset: list
@@ -151,17 +147,17 @@ class _SubsetCreator:
     def display_search_solution_steps(self, iterations, current_subset, current_subset_points,
                                       best_subset, best_subset_points):
         """
-        The function that display steps of searching for best solution
+        The function that display steps of searching for best solution.
 
-        :param iterations: loop iterations
+        :param iterations: Loop iterations
         :type iterations: int
-        :param current_subset: neighboring solution that is check
+        :param current_subset: Neighboring solution that is check
         :type current_subset: list
-        :param current_subset_points: points of current subset
+        :param current_subset_points: Points of current subset
         :type current_subset_points: int
-        :param best_subset: best found solution
+        :param best_subset: Best found solution
         :type best_subset: list
-        :param best_subset_points: points of best solution
+        :param best_subset_points: Points of the best solution
         :type best_subset_points: list
         """
         print(f"Iter: {iterations} current subset: {current_subset}, current subset points: "
@@ -171,20 +167,21 @@ class _SubsetCreator:
 
 
 class HillClimbingDeterministic(_SubsetCreator):
-    """A hill climbing algorithm deterministic version."""
+    """Hill climbing is a simple optimization algorithm used to find the best possible solution. It always chooses
+       the best neighboring solutions."""
 
     def __init__(self, target_sum, iterations, set_numbers, end_in_optimum = False, display_steps = False):
         """
 
         :param target_sum: Searched sum of numbers.
         :type target_sum: int
-        :param set_numbers: Initial set, from which we create subsets, which we search in order to find a solution.
-        :type set_numbers: set
         :param iterations: Number of algorithm executions.
         :type iterations: int
+        :param set_numbers: Initial set, from which we create subsets, which we search in order to find a solution.
+        :type set_numbers: set
         :param end_in_optimum: The algorithm terminates working when is at the optimum of the function.
         :type end_in_optimum: bool
-        :param display_steps:Allows to display the steps that the algorithm performs in order to find
+        :param display_steps: Allows to display the steps that the algorithm performs in order to find
                solutions. Not recommended due to the huge amount of displayed information.
         :type display_steps: bool
         """
@@ -253,7 +250,7 @@ class HillClimbingDeterministic(_SubsetCreator):
         start_time = time.time()
         self.search_solution()
         formatted_time = "{:.9f}".format(time.time() - start_time)
-        return formatted_time
+        return formatted_time + " sec"
 
     def how_algorithm_works(self):
         """
@@ -266,10 +263,10 @@ class HillClimbingDeterministic(_SubsetCreator):
         All duplicates of numbers are removing from main set!!!!
         
         1. We create first subset which contains random 0 and 1 numbers, for example [0, 1, 0, 1, 1] 
-           (list have always same length as 'main_set').
-           [0, 1, 0, 1, 1] is the subset from which the computation will start. 
+            (list have always same length as 'main_set').
+            [0, 1, 0, 1, 1] is the subset from which the computation will start. 
            
-           What does 0 and 1 numbers means ?
+            What does 0 and 1 numbers means ?
            
                 1 is information for algorithm that number will be taken for our computation.
                 0 is information for algorithm that number will not be taken for our computation.
@@ -278,31 +275,49 @@ class HillClimbingDeterministic(_SubsetCreator):
                 {5, 1, 2, 3, 4}
                 [0, 1, 0, 1, 1]  = [1, 3, 4]
         
-        2. When we have subset [0, 1, 0, 1, 1] , we can create neighbours (amount of neighbours is always same as length
-           of subset).
-           Neighbor is a subset that have one change of 0 or 1 number from subset 
-           (in this case we will change subset [0, 1, 0, 1, 1] ). 
+        2. When we have subset [0, 1, 0, 1, 1] , we can create neighboring solutions 
+            (amount of neighbours is always same as length of subset).
            
-           So first neighbor for [0, 1, 0, 1, 1] is [1, 1, 0, 1, 1], because we change 0 (on x postion [x, 1, 0, 1, 1])
-           from [0, 1, 0, 1, 1] to 1 
+            Neighboring solution is a subset that have one change of 0 or 1 number from original subset. 
+            (in this case we modify subset [0, 1, 0, 1, 1] ). 
            
-           The second neighbor is change on next postion from [0, 1, 0, 1, 1], so next neighbor change is:
+            So first neighboring solution for [0, 1, 0, 1, 1] is [1, 1, 0, 1, 1], 
+            because we change 0 (on x position [x, 1, 0, 1, 1]) from [0, 1, 0, 1, 1] to 1 
+           
+            The second neighboring solution is change on next position from [0, 1, 0, 1, 1], so next neighbor change is:
                 [0, 1, 0, 1, 1] -> [0, 0, 0, 1, 1]
                 
-                all neighbors for [0, 1, 0, 1, 1]:
-                                  [1, 1, 0, 1, 1] -> {5, 1, 3, 4}
-                                  [0, 0, 0, 1, 1] -> {3, 4}
-                                  [0, 1, 1, 1, 1] -> {1, 2, 3, 4}
-                                  [0, 1, 0, 0, 1] -> {1, 4}
-                                  [0, 1, 0, 1, 0] -> {1, 3}
+                all neighboring solutions for [0, 1, 0, 1, 1]:
+                                              [1, 1, 0, 1, 1] -> {5, 1, 3, 4}
+                                              [0, 0, 0, 1, 1] -> {3, 4}
+                                              [0, 1, 1, 1, 1] -> {1, 2, 3, 4}
+                                              [0, 1, 0, 0, 1] -> {1, 4}
+                                              [0, 1, 0, 1, 0] -> {1, 3}
                                   
-           so we have nested list which that contain all neighbors  
+            so we have nested list which that contains all neighboring solutions.
            
         3. Now we search for best solution in our list of neighbors.
-           Every neighbor must be rated, to do it we use formula:
-           points = abs(sum_to_find - sum_of_current_neighbor) 
-                                         
+            Every neighbor must be rated, to do it we use formula:
+                points = abs(sum_to_find - sum_of_current_neighbor) 
+                
+            That's mean the best neighboring solution is that with the lowest points (I know it sounds weird).
            
+            For example:
+            
+                Start arguments: main_set = {5, 1, 2, 3, 4} , sum_to_find = 5 
+                random subset from which we start the search [0, 1, 0, 1, 1] -> {1, 3, 5} -> points = abs(5 - 9) = 4
+                                                             [1, 1, 0, 1, 1] -> {5, 1, 3, 4} -> points = abs(5 - 13) = 8 
+                                                             [0, 0, 0, 1, 1] -> {3, 4} -> points = abs(5 - 7) = 2 
+                                                             [0, 1, 1, 1, 1] -> {1, 2, 3, 4} -> points = abs(5 - 10) = 5
+                                                             [0, 1, 0, 0, 1] -> {1, 4} -> points = abs(5 - 5) = 0 
+                                                             [0, 1, 0, 1, 0] -> {1, 3} -> points = abs(5 - 1) = 1 
+                                         
+                We can see that the best solution is subset with 0 points {1,4} so this is solution, 
+                that we exactly needed, so program stops execution.
+                
+                if we do not find searched solution, is selected neighboring solution with the lowest points
+                and we back to point 2 to create new neighboring solution using selected solution.
+                The action is performed as many times as we specify iterations.
         """)
 
 class HillClimbingFirstChoice(_SubsetCreator):
@@ -564,7 +579,8 @@ class SimulatedAnnealing(_SubsetCreator):
                     iter_count += 1
                     if self.display_steps:
                         print("\n")
-                elif number_between_zero_one < math.exp(-abs(neighboring_points - best_solution_points)/temperature_change(iter_count)):
+                elif number_between_zero_one < math.exp(-abs(neighboring_points - best_solution_points)/
+                                                        temperature_change(iter_count)):
                     best_solution = neighboring_solution
                     best_solution_points = neighboring_points
                     neighboring_generator_count = 1
