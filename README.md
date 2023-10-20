@@ -3,4 +3,5 @@ Algorithms used:
                - hill climbing deterministic
                - hill climbing first choice
                - simulated annealing
+               - genetic algorithm
                                                             
