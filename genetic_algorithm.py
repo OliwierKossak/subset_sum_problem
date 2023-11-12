@@ -1,4 +1,5 @@
 import random
+import time
 from subset_creator import _SubsetCreator
 
 class GeneticAlgorithm(_SubsetCreator):
@@ -92,8 +93,32 @@ class GeneticAlgorithm(_SubsetCreator):
             new_crossed_population = self.crossbreeding_population(new_selected_population)
             new_mutated_population = self.mutation(new_crossed_population, 100)
             new_population = new_mutated_population
-            print(i, new_population)
         return new_population
+
+    def search_for_best_individual(self):
+        population = self.search_solution()
+        best_individual_index = 0
+
+        for i in range(len(population) - 1):
+            assessment_new = abs(sum(population[i+1]) - self.target_sum)
+            assessment_best = abs(sum(population[best_individual_index]) - self.target_sum)
+            if assessment_new < assessment_best:
+                best_individual_index = i
+
+        return population[i]
+
+    def execution_time(self):
+        """
+        The function that return execution time for search of solution (sec).
+
+        :return: Time execution of search of solution.
+        :rtype: str
+        """
+
+        start_time = time.time()
+        self.search_solution()
+        formatted_time = "{:.9f}".format(time.time() - start_time)
+        return formatted_time
 
 
 
