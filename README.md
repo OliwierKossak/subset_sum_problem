@@ -26,16 +26,22 @@ the size of the starting set that is searched for in order to find a solution = 
 
 **time of execution:**
 hill climbing deterministic: 6.666187286sec
+
 hill climbing first choice: 0.020288706sec
+
 simulated annealing: 0.022834539sec
+
 genetic algorithm: 0.629482269sec
 
 ![untitled](https://github.com/OliwierKossak/subset_sum_problem/assets/138603416/a67dfece-6313-410f-a531-ed3cc3ab4fc8)
 
 **sum of numbers in best found set:**
 hill climbing deterministic sum of the found solution: 5001
+
 hill climbing first choice sum of the found solution: 5002
+
 simulated annealing sum of the found solution: 5000
+
 genetic algorithm sum of the found solution: 5761
 
 ![untitled(1)](https://github.com/OliwierKossak/subset_sum_problem/assets/138603416/8889b8db-294d-4dc8-ba93-b3782a8b22c5)
