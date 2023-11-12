@@ -1,9 +1,9 @@
 ### Implementation of space search algorithms to find a solution to the subset sum problem. 
 
-## Subset sum problem definiton:
+# Subset sum problem definiton:
 The **SUBSET-SUM** problem involves determining whether or not a subset from a list of integers can sum to a target value. For example, consider the list of nums = [1, 2, 3, 4]. If the target = 7, there are two subsets that achieve this sum: {3, 4} and {1, 2, 4}. If target = 11, there are no solutions.
 
-## Algorithms used to find solution:
+# Algorithms used to find solution:
 
 1. Hill climbing deterministic - Hill climbing is a local search algorithm that starts with an arbitrary solution to a problem and iteratively makes small moves toward a better solution. In the deterministic version of hill climbing, the algorithm always chooses the best available move.
    
@@ -12,5 +12,10 @@ The **SUBSET-SUM** problem involves determining whether or not a subset from a l
 3. Simulated annealing - Simulated Annealing is a probabilistic optimization algorithm inspired by the annealing process in metallurgy, where a material is heated to a high temperature and then gradually cooled to remove defects, reducing its energy and increasing its overall quality. In optimization, it's used to find an approximate solution to an optimization problem, particularly in cases where a global optimum is sought, and the search space is complex.
    
 4. Genetic algorithm - A Genetic Algorithm (GA) is a heuristic optimization algorithm inspired by the process of natural selection and genetics. It's often used for optimization and search problems where traditional algorithms may be impractical. The algorithm works by maintaining a population of potential solutions and evolving them over successive generations.
-               
-                                                            
+
+# Starting the program:
+**input data:**
+the sum of the set that are being searched for = 5000
+number of algorithm iterations = 100
+the size of the starting set that is searched for in order to find a solution = 1000 of numbers generate in range -1000 to 1000
+   
